@@ -5,16 +5,26 @@
 (* :Title: jsoupLink                       *)
 (* :Context: jsoupLink`                    *)
 (* :Author: Calle Ekdahl                   *)
-(* :Date: 2018-11-03                       *)
+(* :Date: 2024-05-09                       *)
 
-(* :Package Version: 1.0                   *)
-(* :Mathematica Version: 11.3.0.0          *)
-(* :Copyright: (c) 2015-2018 Calle Ekdahl  *)
+(* :Package Version: 1.1                   *)
+(* :Mathematica Version: 12.1.0.0          *)
+(* :Copyright: (c) 2015-2024 Calle Ekdahl  *)
 (* :Keywords:                              *)
 (* :Discussion:                            *)
 
 BeginPackage["jsoupLink`"];
-(* Exported symbols added here with SymbolName::usage *)
+
+HTMLSelect::usage = "HTMLSelect[rootElement, selector] returns the elements that match the CSS selector.
+HTMLSelect[selector] represents an operator form of HTMLSelect that can be applied to an element.";
+HTMLAttribute::usage ="HTMLAttribute[element, attribute] gets the given attribute from the element.
+HTMLAttribute[attribute] represents an operator form of HTMLAttribute that can be applied to an element.";
+HTMLAttributes::usage = "HTMLAttributes[element] returns the attributes of the element in the form of an association.";
+HTMLParent::usage = "HTMLParent[element] returns the parent of the element.";
+HTMLChildren::usage = "HTMLChildren[element] returns the list of children of the element.";
+HTMLSiblings::usage = "HTMLSiblings[element] returns the list of siblings of the element.";
+HTMLOwnText::usage = "OwnText[element] returns the text directly under the element, i.e. not nested in a child. The own text of <h1>Hello <b>world</b></h1> is \"Hello\".";
+HTMLAllText::usage = "AllText[element] returns all text under the element. Applied to <h1>Hello <b>world</b></h1> it would return \"Hello world\".";
 
 Begin["`Private`"]; (* Begin Private Context *)
 
@@ -144,6 +154,17 @@ Global`HTMLElement[el_][prop_?Not@*hasPropertyQ] := Global`HTMLElement[el]["Attr
 
 ElementProperty[node_Global`HTMLElement, property__] := node[property];
 ElementProperty[node_Global`HTMLElement][property__] := node[property];
+
+HTMLSelect[el_Global`HTMLElement, selector_String] := el["Select", selector];
+HTMLSelect[selector_String][el_Global`HTMLElement] := el["Select", selector];
+HTMLAttribute[el_Global`HTMLElement, attribute_String] := el["Attribute", attribute];
+HTMLAttribute[attribute_String][node_Global`HTMLElement] := node["Attribute", attribute];
+HTMLAttributes[el_Global`HTMLElement] := el["Attributes"];
+HTMLParent[el_Global`HTMLElement] := el["Parent"];
+HTMLChildren[el_Global`HTMLElement] := el["Children"];
+HTMLSiblings[el_Global`HTMLElement] := el["Siblings"];
+HTMLOwnText[el_Global`HTMLElement] := el["OwnText"];
+HTMLAllText[el_Global`HTMLElement] := el["AllText"];
 
 (* DOM Tree *)
 colors = <|
