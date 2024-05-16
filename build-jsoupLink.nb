@@ -1,0 +1,281 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10989,        273]
+NotebookOptionsPosition[      9808,        248]
+NotebookOutlinePosition[     10436,        267]
+CellTagsIndexPosition[     10393,        264]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Building a jsoupLink package", "Subsubsection",
+ CellChangeTimes->{{3.92492415690456*^9, 
+  3.9249241799159966`*^9}},ExpressionUUID->"ef274cca-8478-7844-b61e-\
+9345c35341de"],
+
+Cell["Change these as needed:", "Text",
+ CellFrame->{{0, 0}, {0, 2}},
+ CellFrameColor->GrayLevel[0.75],
+ CellChangeTimes->{{3.9249242870261536`*^9, 3.924924309838665*^9}},
+ FontWeight->"Bold",ExpressionUUID->"11938e9c-e506-4b4f-abcf-92cafba1f347"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"packageName", "=", "\"\<jsoupLink\>\""}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"directory", " ", "where", " ", 
+    RowBox[{"README", ".", "md"}], " ", "resides"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"repoPath", "=", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{"\"\<c:/code/repos/\>\"", ",", "packageName"}], "}"}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"directory", " ", "where", " ", 
+    RowBox[{"PacletInfo", ".", "wl"}], " ", "or", " ", 
+    RowBox[{"PacletInfo", ".", "m"}], " ", "resides"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sourcePath", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"repoPath", ",", "packageName"}], "}"}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.9248638040182667`*^9, 3.9248638131762486`*^9}, {
+   3.9248638553738823`*^9, 3.924863873187456*^9}, 3.9248771984387207`*^9, {
+   3.924881866088379*^9, 3.9248820143943634`*^9}, {3.9249026219945755`*^9, 
+   3.924902633463476*^9}, {3.924923404916481*^9, 3.924923413473181*^9}, {
+   3.924923600205801*^9, 3.9249236966196003`*^9}, 3.924923765268717*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"10eeff5e-e3f9-7c4c-9acb-15e1cee0f8d1"],
+
+Cell[BoxData[{
+ RowBox[{"Needs", "[", "\"\<PacletTools`\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"On", "[", "Assert", "]"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"locate", " ", 
+     RowBox[{"PacletInfo", ".", 
+      RowBox[{"{", 
+       RowBox[{"wl", ",", "m"}], "}"}]}]}], ",", " ", 
+    RowBox[{"read", " ", "package", " ", "name", " ", "and", " ", "version"}],
+     ",", " ", 
+    RowBox[{"build", " ", "paclet", " ", "file", " ", "name"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pacletInfoFileName", "=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"FileExistsQ", "[", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"sourcePath", ",", "\"\<PacletInfo.wl\>\""}], "}"}], "]"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"sourcePath", ",", "\"\<PacletInfo.wl\>\""}], "}"}], "]"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"FileExistsQ", "[", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{"sourcePath", ",", "\"\<PacletInfo.m\>\""}], "}"}], "]"}], 
+        "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{"sourcePath", ",", "\"\<PacletInfo.m\>\""}], "}"}], "]"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"Failure", "[", 
+        RowBox[{"\"\<PacletInfo.{wl,m} not found\>\"", ",", 
+         RowBox[{"<|", 
+          RowBox[{"\"\<sourcePath\>\"", "->", "sourcePath"}], "|>"}]}], 
+        "]"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{"\[Not]", 
+    RowBox[{"FailureQ", "[", "pacletInfoFileName", "]"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pacletInfoText", "=", 
+    RowBox[{"Import", "[", 
+     RowBox[{"pacletInfoFileName", ",", "\"\<Text\>\""}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pacletObjectHeld", "=", 
+   RowBox[{
+    RowBox[{"Interpreter", "[", 
+     RowBox[{"Restricted", "[", 
+      RowBox[{"\"\<HeldExpression\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "PacletObject", ",", "Association", ",", "Rule", ",", "List", ",", 
+         "String"}], "}"}]}], "]"}], "]"}], "[", "pacletInfoText", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{"AssociationQ", "[", 
+    RowBox[{"pacletObjectHeld", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pacletInfo", "=", 
+    RowBox[{"pacletObjectHeld", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pacletName", "=", 
+   RowBox[{"Lookup", "[", 
+    RowBox[{"pacletInfo", ",", "\"\<Name\>\"", ",", 
+     RowBox[{"pacletInfo", "[", 
+      RowBox[{"[", 
+       RowBox[{"Key", "[", "Name", "]"}], "]"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Assert", "[", 
+  RowBox[{"\[Not]", 
+   RowBox[{"MissingQ", "[", "pacletName", "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pacletVersion", "=", 
+   RowBox[{"Lookup", "[", 
+    RowBox[{"pacletInfo", ",", "\"\<Version\>\"", ",", 
+     RowBox[{"pacletInfo", "[", 
+      RowBox[{"[", 
+       RowBox[{"Key", "[", "Version", "]"}], "]"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assert", "[", 
+   RowBox[{"\[Not]", 
+    RowBox[{"MissingQ", "[", "pacletVersion", "]"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pacletFilename", "=", 
+   RowBox[{
+   "pacletName", "<>", "\"\<-\>\"", "<>", "pacletVersion", "<>", 
+    "\"\<.paclet\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pacletFullPath", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"repoPath", ",", "pacletFilename"}], "}"}], "]"}]}], 
+  ";"}]}], "Input",
+ CellFrame->{{0, 0}, {0, 2}},
+ CellFrameColor->GrayLevel[0.75],
+ CellChangeTimes->{{3.9248820236225224`*^9, 3.9248820295494976`*^9}, {
+   3.924882078394993*^9, 3.9248820914840183`*^9}, 3.9249022275187874`*^9, {
+   3.924902261960375*^9, 3.924902478085518*^9}, {3.9249025784161034`*^9, 
+   3.9249026096673756`*^9}, {3.924902734659487*^9, 3.924902763698618*^9}, {
+   3.924902812276819*^9, 3.924902829979721*^9}, {3.9249028852219887`*^9, 
+   3.924902903439783*^9}, {3.9249029388796997`*^9, 3.9249029618815765`*^9}, {
+   3.9249030394504433`*^9, 3.9249030665729427`*^9}, {3.9249030995409317`*^9, 
+   3.9249031157851486`*^9}, {3.9249031832455177`*^9, 3.924903257258795*^9}, {
+   3.9249033060821247`*^9, 3.9249034241142807`*^9}, {3.9249034592773514`*^9, 
+   3.9249035162818584`*^9}, {3.9249037850315876`*^9, 
+   3.9249038004137344`*^9}, {3.9249039349805603`*^9, 
+   3.9249040125741215`*^9}, {3.9249040960306644`*^9, 
+   3.9249041158014526`*^9}, {3.9249042049178143`*^9, 
+   3.9249043237616215`*^9}, {3.9249094773410263`*^9, 
+   3.9249095204230633`*^9}, {3.9249224916123238`*^9, 3.924922511045313*^9}, {
+   3.9249226074468937`*^9, 3.9249226810500374`*^9}, {3.9249227492428665`*^9, 
+   3.9249229028756695`*^9}, {3.9249229552332287`*^9, 
+   3.9249230992836456`*^9}, {3.924923142839966*^9, 3.9249231659211254`*^9}, {
+   3.924923259553236*^9, 3.9249232962509556`*^9}, {3.9249237511495285`*^9, 
+   3.924923752022196*^9}, {3.92492398382815*^9, 3.9249239904090595`*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"414034a6-ea8c-5f43-8ca7-f7afb73c3ef0"],
+
+Cell[BoxData[{
+ RowBox[{"PacletBuild", "[", "sourcePath", "]"}], "\n", 
+ RowBox[{"CreatePacletArchive", "[", "sourcePath", "]"}], "\n", 
+ RowBox[{"PacletInstall", "[", "pacletFullPath", "]"}]}], "Input",
+ CellChangeTimes->{{3.9248638040182667`*^9, 3.9248638131762486`*^9}, {
+   3.9248638553738823`*^9, 3.924863873187456*^9}, 3.9248771984387207`*^9, {
+   3.924881866088379*^9, 3.9248820143943634`*^9}, 3.9249233095352993`*^9, {
+   3.924923743025814*^9, 3.9249237432797394`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"e7b210d3-8a46-b842-adeb-995fdf0bb65c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"show", " ", "that", " ", "the", " ", "result", " ", "works"}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Needs", "[", "\"\<jsoupLink`\>\"", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"dom", "=", 
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<https://dst.at\>\"", ",", "\"\<HTMLDOM\>\""}], "]"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"%", "[", "\"\<DOMTree\>\"", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.9248772247864227`*^9, 3.9248772797268066`*^9}, {
+  3.9248780231646233`*^9, 3.924878029170492*^9}, {3.9249240779298553`*^9, 
+  3.924924097177786*^9}},ExpressionUUID->"aab7245a-30f3-6645-9593-\
+5345cf7c2fb5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "uninstall", " ", "in", " ", "preparation", " ", "for", " ", "the", " ", 
+    "next", " ", "build"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"PacletUninstall", "[", "\"\<jsoupLink\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.9248640590271816`*^9, 3.924864088788742*^9}, {
+  3.924924109327488*^9, 
+  3.9249241398402233`*^9}},ExpressionUUID->"d41f7e34-66e8-9c4c-8f2a-\
+f3f406756f58"]
+}, Open  ]]
+},
+WindowSize->{1005.3, 646.8},
+WindowMargins->{{Automatic, -3.599999999999909}, {Automatic, 0}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->FrontEnd`FileName[{$RootDirectory, "C:", "Users", "fk", 
+   "AppData", "Roaming", "Mathematica", "SystemFiles", "FrontEnd", 
+   "StyleSheets"}, "fkstyle.nb", CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"8389e925-78ad-f542-a2e0-3e8ab9d1b4ac"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 180, 3, 47, "Subsubsection",ExpressionUUID->"ef274cca-8478-7844-b61e-9345c35341de"],
+Cell[763, 27, 247, 4, 49, "Text",ExpressionUUID->"11938e9c-e506-4b4f-abcf-92cafba1f347"],
+Cell[1013, 33, 1371, 32, 141, "Input",ExpressionUUID->"10eeff5e-e3f9-7c4c-9acb-15e1cee0f8d1"],
+Cell[2387, 67, 5714, 139, 483, "Input",ExpressionUUID->"414034a6-ea8c-5f43-8ca7-f7afb73c3ef0"],
+Cell[8104, 208, 556, 8, 68, "Input",ExpressionUUID->"e7b210d3-8a46-b842-adeb-995fdf0bb65c"],
+Cell[8663, 218, 684, 15, 86, "Input",ExpressionUUID->"aab7245a-30f3-6645-9593-5345cf7c2fb5"],
+Cell[9350, 235, 442, 10, 50, "Input",ExpressionUUID->"d41f7e34-66e8-9c4c-8f2a-f3f406756f58"]
+}, Open  ]]
+}
+]
+*)
+

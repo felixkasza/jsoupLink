@@ -5,7 +5,7 @@
 (* :Author: Calle Ekdahl                   *)
 (* :Date: 2018-11-03                       *)
 
-(* :Package Version: 1.0                   *)
+(* :Package Version: 1.0.1                 *)
 (* :Mathematica Version: 11.3.0.0          *)
 (* :Copyright: (c) 2015-2018 Calle Ekdahl  *)
 (* :Keywords:                              *)
@@ -18,7 +18,7 @@ Begin["`Private`"] (* Begin Private Context *)
 
 Needs["JLink`"]
 InstallJava[];
-AddToClassPath[FileNameJoin[{DirectoryName[$InputFileName], "Java/jsoup-1.9.2.jar"}]];
+AddToClassPath[FileNameJoin[{DirectoryName[$InputFileName], "Java"}]];
 LoadJavaClass["org.jsoup.Jsoup"];
 
 ImportExport`RegisterImport["HTMLDOM", jsoupLink`DownloadDOM];
