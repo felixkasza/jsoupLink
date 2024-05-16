@@ -1,12 +1,12 @@
 Paclet[
     Name -> "jsoupLink",
-    Version -> "1.0.0",
-    MathematicaVersion -> "10.0+",
+    Version -> "1.0.1",
+    MathematicaVersion -> "12.3+",
     Description -> "HTML parser for Mathematica/Wolfram Language",
     Creator -> "Calle Ekdahl",
     Extensions -> 
         {
-            {"Kernel", Root -> ".", Context -> "jsoupLink`"},
+            {"Kernel", Root -> "Kernel", Context -> "jsoupLink`"},
             {"JLink"}
         }
 ]
