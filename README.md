@@ -1,7 +1,6 @@
 # jsoupLink
 
 Created by Calle Ekdahl.
-(Minor adaptations to the WL 12.3 paclet conventions by Felix Kasza fk@mvps.org.)
 
 GPL-2.0+ licensed.
 
@@ -16,6 +15,8 @@ While traditionally HTML has been worked on in Mathematica by importing it as sy
 The most common application for jsoupLink is to extract information from websites, for example table data.
 
 ## Installing jsoupLink
+Note: For detailed build instructions and an example see BUILD.md and build-jsoupLink.nb.
+
 `jsoupLink` is distributed in the form of a paclet. Download the latest version of the paclet from [the releases page](https://github.com/cekdahl/jsoupLink/releases) and install it using the the `PacletManager` package (which you already have because it comes with Mathematica):
 
     Needs["PacletManager`"]
