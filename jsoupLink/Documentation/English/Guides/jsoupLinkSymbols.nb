@@ -1,0 +1,397 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16342,        389]
+NotebookOptionsPosition[     11959,        297]
+NotebookOutlinePosition[     12735,        320]
+CellTagsIndexPosition[     12692,        317]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Introduction to jsoupLink", "GuideTitle",
+ CellChangeTimes->{{3.925737768991457*^9, 3.925737797167343*^9}, {
+  3.92633164115255*^9, 3.92633164131349*^9}, {3.926332778297596*^9, 
+  3.926332801962509*^9}},
+ CellID->359295352,ExpressionUUID->"516ffa7b-775c-024f-9547-24feb1569720"],
+
+Cell[TextData[{
+ "jsoup is an open-source library written in Java, which excels at parsing \
+HTML and manipulating the DOM. jsoupLink is a package written for Mathematica \
+in Wolfram Language which aims to provide an interface to jsoup that feels \
+natural for Mathematica users.\nWhile traditionally HTML has been worked on \
+in Mathematica by importing it as symbolic XML and painstakingly transforming \
+it with pattern matching, jsoupLink introduces the concept of HTML element \
+objects, which makes it much easier to traverse the DOM tree and to modify \
+it.\nThe most common application for jsoupLink is to extract information from \
+websites, for example table data.\nTo get started, import an HTML document \
+using Import[url, \"HTMLDOM\"]. This will retrieve an ",
+ ButtonBox["HTMLElement",
+  BaseStyle->"Link",
+  ButtonData->"paclet:CalleEkdahl/jsoupLink/ref/HTMLElement"],
+ " object, around which all functionality revolves (read the corresponding \
+reference page for more information).\nAdditional documentation is available \
+on Github: https://github.com/cekdahl/jSoupLink"
+}], "GuideAbstract",
+ CellChangeTimes->{{3.9244218452024817`*^9, 3.924421923931122*^9}, {
+  3.9244220009129086`*^9, 3.924422226018102*^9}, {3.925732401074396*^9, 
+  3.925732411179226*^9}, {3.925732745796444*^9, 3.925732770852078*^9}, {
+  3.926331586297636*^9, 3.926331589369391*^9}, {3.9263316222836266`*^9, 
+  3.926331626969567*^9}, {3.926331915040205*^9, 3.926331922937531*^9}, {
+  3.9263319552888985`*^9, 3.926331966554611*^9}, {3.926332142417591*^9, 
+  3.926332176921047*^9}, {3.926332658137705*^9, 3.9263327356015453`*^9}, {
+  3.9263328642019215`*^9, 3.926332942241665*^9}},
+ CellID->21493543,ExpressionUUID->"641abffd-c2ef-b445-8ed6-0befaa8f3ac4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "GuideFunctionsSection",
+ CellID->72153465,ExpressionUUID->"2b989910-534c-cf42-9e99-fa84452ca529"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLElement",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLElement"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"c40ac8e4-27e1-4161-a8df-4d4f38357a23",ExpressionUUID->
+  "9e8e064c-1725-3f4a-80db-fd228aa74c30"],
+ " \[LongDash] The main symbol of jsoupLink, which represents an HTML element \
+and its children."
+}], "GuideText",
+ CellChangeTimes->{{3.924422319100456*^9, 3.9244223593720493`*^9}, {
+   3.924422393234535*^9, 3.924422424434992*^9}, 3.9244229694571953`*^9, {
+   3.9257377116103086`*^9, 3.9257377116103086`*^9}, 3.926331686505123*^9},
+ CellID->247914492,ExpressionUUID->"93bc498d-f366-9c47-b025-4e0874318f73"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLSelect",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLSelect"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"c5c6736a-1ff4-4e4e-8fcf-2d9846cbae62",ExpressionUUID->
+  "c5ced2b3-2c9d-df40-b751-d7eaa0538556"],
+ " \[LongDash] Use a CSS selector to filter out HTML elements."
+}], "GuideText",
+ CellChangeTimes->{{3.924422976219202*^9, 3.924423068241644*^9}, {
+  3.925732529739149*^9, 3.925732530036513*^9}, {3.925737715993185*^9, 
+  3.925737715993185*^9}},
+ CellID->31498231,ExpressionUUID->"f4be033f-a8f4-be4a-93e9-e365be589a60"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLAttribute",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLAttribute"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "73ec875e-f263-1f4d-9c9b-c32a5fd4db07"],
+ " \[LongDash] Get the value of an attribute of an HTML element."
+}], "GuideText",
+ CellChangeTimes->{{3.924423081179339*^9, 3.924423108171223*^9}, {
+  3.9257325353166237`*^9, 3.9257325353166237`*^9}, {3.9257377220749*^9, 
+  3.9257377220749*^9}},
+ CellID->345094552,ExpressionUUID->"20f49a4a-5f5c-934c-be2d-47d11b16c0c8"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLAttributes",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLAttributes"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "eddf9506-e32f-b64a-a032-ca70d7772b7d"],
+ " \[LongDash] Get all values of an HTML element as an association."
+}], "GuideText",
+ CellChangeTimes->{{3.924423114331245*^9, 3.9244231257225513`*^9}, {
+  3.9257325366604614`*^9, 3.925732536661459*^9}, {3.925737725909241*^9, 
+  3.925737725909241*^9}},
+ CellID->691542496,ExpressionUUID->"cbb781b0-ce14-6f48-9bc5-ff488ce08fd6"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLParent",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLParent"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "a374cbfb-7ab2-2e44-a51e-63d863dd6ad9"],
+ " \[LongDash] Get the parent of an HTML element."
+}], "GuideText",
+ CellChangeTimes->{{3.924423133323093*^9, 3.92442316064921*^9}, {
+  3.9257325381736546`*^9, 3.9257325381736546`*^9}, {3.925737729779833*^9, 
+  3.925737729779833*^9}},
+ CellID->126931967,ExpressionUUID->"43a9999d-5ac5-a748-99f3-d841df673cab"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLChildren",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLChildren"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "e5751754-4f9c-b642-b463-1c5340b59d87"],
+ " \[LongDash] Get a list of children of an HTML element."
+}], "GuideText",
+ CellChangeTimes->{{3.9244231686304245`*^9, 3.924423183745392*^9}, {
+  3.925732539621708*^9, 3.925732539621708*^9}, {3.925737733420151*^9, 
+  3.925737733420151*^9}},
+ CellID->240074972,ExpressionUUID->"d6994c7c-b3ad-2442-91aa-5445a4c68de2"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLSiblings",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLSiblings"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "68adb171-e688-bd4f-be06-8a56df7d989a"],
+ " \[LongDash] Get a list of siblings of an HTML element."
+}], "GuideText",
+ CellChangeTimes->{{3.924423199420103*^9, 3.924423214650074*^9}, {
+  3.925732541180771*^9, 3.925732541180771*^9}, {3.925737737195719*^9, 
+  3.925737737196715*^9}},
+ CellID->432367259,ExpressionUUID->"724db112-b52f-4a49-8a4e-def109bf9124"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLOwnText",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLOwnText"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "3331f856-11dc-ea47-afc7-917c23e6ef2f"],
+ " \[LongDash] Get the text directly underneath an HTML element."
+}], "GuideText",
+ CellChangeTimes->{{3.924423226403122*^9, 3.924423240170948*^9}, {
+  3.925732543132393*^9, 3.925732543132393*^9}, {3.9257377405945625`*^9, 
+  3.9257377405945625`*^9}},
+ CellID->506229313,ExpressionUUID->"c1730d29-9723-ea45-8852-ba723fb33a9b"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLAllText",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLAllText"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "731c0da1-5992-6b4d-9b4a-380703cd203c"],
+ " \[LongDash] Get all text underneath an HTML element.\.08"
+}], "GuideText",
+ CellChangeTimes->{{3.924423246724392*^9, 3.924423258410185*^9}, {
+  3.925732544885359*^9, 3.925732569270647*^9}, {3.925737744720745*^9, 
+  3.925737744720745*^9}},
+ CellID->301693880,ExpressionUUID->"2ea7c7a0-4052-c043-a4d5-fe2dfd18c61e"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HTMLTree",
+   BaseStyle->"Link",
+   ButtonData->"paclet:jsoupLink/ref/HTMLTree"]], "InlineGuideFunction",
+  TaggingRules->{"PageType" -> "Function"},
+  CellTags->"f3365f71-cb6f-4687-a1e4-59518faf01c3",ExpressionUUID->
+  "fd6a013c-5c19-414d-a271-642642331cb9"],
+ " \[LongDash] Show a GUI that visualizes the HTML document structure."
+}], "GuideText",
+ CellChangeTimes->{{3.925732571241659*^9, 3.925732600906487*^9}, {
+  3.92573774879117*^9, 3.92573774879117*^9}},
+ CellID->535478037,ExpressionUUID->"6050729b-ac12-c245-adf7-ece6dc2b1bad"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Tech Notes", "GuideTutorialsSection",
+ CellID->371632104,ExpressionUUID->"1c5a3cba-da5e-fd41-aeed-83bd53b5c011"],
+
+Cell["XXXX", "GuideTutorial",
+ CellID->1138326452,ExpressionUUID->"63a33339-5227-124b-a3e9-6b257f0ff051"],
+
+Cell["XXXX", "GuideTutorial",
+ CellID->2068351288,ExpressionUUID->"06a82ecf-f2b0-9d4b-8965-6e41ea844691"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Guides", "GuideMoreAboutSection",
+ CellChangeTimes->{{3.843042393936669*^9, 3.843042395176153*^9}},
+ CellID->1462303427,ExpressionUUID->"374105ed-0b33-b448-aef5-c1a154f7c1be"],
+
+Cell["XXXX", "GuideMoreAbout",
+ CellID->1130841321,ExpressionUUID->"eb4a32c4-35f6-5d43-82e7-7d3bc82e3abe"],
+
+Cell["XXXX", "GuideMoreAbout",
+ CellID->819806097,ExpressionUUID->"b07b29aa-b08b-fc46-aea2-fffe45f05fb8"]
+}, Open  ]],
+
+Cell["Related Links", "GuideRelatedLinksSection",
+ CellID->225993127,ExpressionUUID->"5290497b-09fc-3148-9069-01dc52b2db13"],
+
+Cell[CellGroupData[{
+
+Cell["Metadata", "MetadataSection",
+ CellID->4930521,ExpressionUUID->"b01c6f80-b67e-3145-ab8e-5c477ec811ab"],
+
+Cell[TextData[{
+ "New in: ",
+ Cell["XX", "HistoryData",
+  CellTags->"New",ExpressionUUID->"c6e472df-22bb-5b41-bf13-95c57aecb190"],
+ " | Modified in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Modified",ExpressionUUID->"8e8e67a3-4724-0f4c-8259-dd8735fe77c7"],
+ " | Obsolete in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Obsolete",ExpressionUUID->"18f5abfb-b85e-9542-9f61-f818e9539dbf"]
+}], "History",
+ CellID->251186445,ExpressionUUID->"e6264705-f5f8-2b47-b5f4-626cca98e694"],
+
+Cell[CellGroupData[{
+
+Cell["Categorization", "CategorizationSection",
+ CellID->153770429,ExpressionUUID->"476ede31-65ef-7f44-bc1e-369191608a08"],
+
+Cell["Guide", "Categorization",
+ CellLabel->"Entity Type",
+ CellID->62685855,ExpressionUUID->"fa57d710-baa5-1844-a829-db15de5bbdfe"],
+
+Cell["jsoupLink", "Categorization",
+ CellChangeTimes->{{3.926331529033386*^9, 3.926331532426197*^9}, 
+   3.926949478464512*^9},
+ CellLabel->"Paclet Name",
+ CellID->731399084,ExpressionUUID->"137db57d-899e-f446-a6fc-555ba1864b5a"],
+
+Cell["jsoupLink`", "Categorization",
+ CellChangeTimes->{{3.9263315400404673`*^9, 3.92633154213851*^9}, 
+   3.9269494815767*^9},
+ CellLabel->"Context",
+ CellID->94328652,ExpressionUUID->"20dd7c5e-d6a7-b24c-9205-71fc82b01fe7"],
+
+Cell["jsoupLink/guide/jsoupLinkSymbols", "Categorization",
+ CellChangeTimes->{{3.926331556769541*^9, 3.9263315721925535`*^9}, 
+   3.9269494848824844`*^9},
+ CellLabel->"URI",
+ CellID->7531843,ExpressionUUID->"588d5343-756c-cd47-9d8e-5590e893e7d0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Keywords", "KeywordsSection",
+ CellID->171085774,ExpressionUUID->"4e189f6a-86d7-d840-9ccf-7630149d9bf0"],
+
+Cell["XXXX", "Keywords",
+ CellID->634591766,ExpressionUUID->"5addf269-6750-0b4e-b8e5-c63f583e6b1e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1086, 1062.75},
+WindowMargins->{{Automatic, 472.5}, {33, Automatic}},
+TaggingRules->{
+ "SEUploaderLastUpdateCheck" -> 3.9215089637483597`17.346028201213446*^9, 
+  "SEUploaderVersion" -> {
+   "Version" -> 131, 
+    "Changes" -> {"Fix upload to account for new XSRF protection"}}, 
+  "WelcomeScreenSettings" -> {"FEStarting" -> False}, "Paclet" -> "jsoupLink"},
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "GuidePageStylesExt.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"d845122a-71cd-0544-a156-ed3fa42cdc0d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 284, 4, 88, "GuideTitle",ExpressionUUID->"516ffa7b-775c-024f-9547-24feb1569720",
+ CellID->359295352],
+Cell[867, 28, 1744, 26, 272, "GuideAbstract",ExpressionUUID->"641abffd-c2ef-b445-8ed6-0befaa8f3ac4",
+ CellID->21493543]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2648, 59, 107, 1, 72, "GuideFunctionsSection",ExpressionUUID->"2b989910-534c-cf42-9e99-fa84452ca529",
+ CellID->72153465],
+Cell[2758, 62, 719, 14, 26, "GuideText",ExpressionUUID->"93bc498d-f366-9c47-b025-4e0874318f73",
+ CellID->247914492],
+Cell[3480, 78, 627, 13, 26, "GuideText",ExpressionUUID->"f4be033f-a8f4-be4a-93e9-e365be589a60",
+ CellID->31498231],
+Cell[4110, 93, 636, 13, 26, "GuideText",ExpressionUUID->"20f49a4a-5f5c-934c-be2d-47d11b16c0c8",
+ CellID->345094552],
+Cell[4749, 108, 645, 13, 26, "GuideText",ExpressionUUID->"cbb781b0-ce14-6f48-9bc5-ff488ce08fd6",
+ CellID->691542496],
+Cell[5397, 123, 618, 13, 26, "GuideText",ExpressionUUID->"43a9999d-5ac5-a748-99f3-d841df673cab",
+ CellID->126931967],
+Cell[6018, 138, 629, 13, 26, "GuideText",ExpressionUUID->"d6994c7c-b3ad-2442-91aa-5445a4c68de2",
+ CellID->240074972],
+Cell[6650, 153, 627, 13, 26, "GuideText",ExpressionUUID->"724db112-b52f-4a49-8a4e-def109bf9124",
+ CellID->432367259],
+Cell[7280, 168, 636, 13, 26, "GuideText",ExpressionUUID->"c1730d29-9723-ea45-8852-ba723fb33a9b",
+ CellID->506229313],
+Cell[7919, 183, 627, 13, 26, "GuideText",ExpressionUUID->"2ea7c7a0-4052-c043-a4d5-fe2dfd18c61e",
+ CellID->301693880],
+Cell[8549, 198, 581, 12, 26, "GuideText",ExpressionUUID->"6050729b-ac12-c245-adf7-ece6dc2b1bad",
+ CellID->535478037]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9167, 215, 118, 1, 74, "GuideTutorialsSection",ExpressionUUID->"1c5a3cba-da5e-fd41-aeed-83bd53b5c011",
+ CellID->371632104],
+Cell[9288, 218, 105, 1, 24, "GuideTutorial",ExpressionUUID->"63a33339-5227-124b-a3e9-6b257f0ff051",
+ CellID->1138326452],
+Cell[9396, 221, 105, 1, 24, "GuideTutorial",ExpressionUUID->"06a82ecf-f2b0-9d4b-8965-6e41ea844691",
+ CellID->2068351288]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9538, 227, 189, 2, 74, "GuideMoreAboutSection",ExpressionUUID->"374105ed-0b33-b448-aef5-c1a154f7c1be",
+ CellID->1462303427],
+Cell[9730, 231, 106, 1, 24, "GuideMoreAbout",ExpressionUUID->"eb4a32c4-35f6-5d43-82e7-7d3bc82e3abe",
+ CellID->1130841321],
+Cell[9839, 234, 105, 1, 24, "GuideMoreAbout",ExpressionUUID->"b07b29aa-b08b-fc46-aea2-fffe45f05fb8",
+ CellID->819806097]
+}, Open  ]],
+Cell[9959, 238, 124, 1, 74, "GuideRelatedLinksSection",ExpressionUUID->"5290497b-09fc-3148-9069-01dc52b2db13",
+ CellID->225993127],
+Cell[CellGroupData[{
+Cell[10108, 243, 108, 1, 72, "MetadataSection",ExpressionUUID->"b01c6f80-b67e-3145-ab8e-5c477ec811ab",
+ CellID->4930521],
+Cell[10219, 246, 473, 11, 26, "History",ExpressionUUID->"e6264705-f5f8-2b47-b5f4-626cca98e694",
+ CellID->251186445],
+Cell[CellGroupData[{
+Cell[10717, 261, 122, 1, 21, "CategorizationSection",ExpressionUUID->"476ede31-65ef-7f44-bc1e-369191608a08",
+ CellID->153770429],
+Cell[10842, 264, 132, 2, 35, "Categorization",ExpressionUUID->"fa57d710-baa5-1844-a829-db15de5bbdfe",
+ CellID->62685855],
+Cell[10977, 268, 229, 4, 35, "Categorization",ExpressionUUID->"137db57d-899e-f446-a6fc-555ba1864b5a",
+ CellID->731399084],
+Cell[11209, 274, 224, 4, 35, "Categorization",ExpressionUUID->"20dd7c5e-d6a7-b24c-9205-71fc82b01fe7",
+ CellID->94328652],
+Cell[11436, 280, 246, 4, 35, "Categorization",ExpressionUUID->"588d5343-756c-cd47-9d8e-5590e893e7d0",
+ CellID->7531843]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11719, 289, 110, 1, 31, "KeywordsSection",ExpressionUUID->"4e189f6a-86d7-d840-9ccf-7630149d9bf0",
+ CellID->171085774],
+Cell[11832, 292, 99, 1, 21, "Keywords",ExpressionUUID->"5addf269-6750-0b4e-b8e5-c63f583e6b1e",
+ CellID->634591766]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
