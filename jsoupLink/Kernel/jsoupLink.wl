@@ -30,7 +30,7 @@ Begin["`Private`"]; (* Begin Private Context *)
 
 Needs["JLink`"];
 InstallJava[];
-AddToClassPath[FileNameJoin[{DirectoryName[$InputFileName], "Java/jsoup-1.17.2.jar"}]];
+AddToClassPath[FileNameJoin[{DirectoryName[$InputFileName], "Java"}]];
 LoadJavaClass["org.jsoup.Jsoup"];
 
 ImportExport`RegisterImport["HTMLDOM", jsoupLink`DownloadDOM];

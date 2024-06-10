@@ -1,12 +1,10 @@
-(* ::Package:: *)
-
 PacletObject[
   <|
     "Name" -> "jsoupLink",
     "Description" -> "HTML parser for Mathematica/Wolfram Language",
     "Creator" -> "Calle Ekdahl",
     "Version" -> "1.1.0",
-    "WolframVersion" -> "10.0+",
+    "WolframVersion" -> "12.3+",
     "License" -> "GPL-2.0+",
     "Extensions" -> {
       {
@@ -26,7 +24,7 @@ PacletObject[
           "jsoupLink`HTMLTree"
         }
       },
-      {"JLink"}
+      {"JLink"},
       {
         "Documentation",
         "Root" -> "Documentation",
